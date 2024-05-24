@@ -26,6 +26,7 @@ class SortedMarketPage extends BasePage {
     await this.click(By.xpath("//div//a[@href='/catalog--vnutrennie-zhestkie-diski/18072776/list?hid=91033']"));
     driver.manage().setTimeouts({ implicit: 3000 });
   }
+
   async catalogFiveElements() {
     let productNames = await driver.findElements(
       By.xpath('//div[@data-auto-themename="listDetailed"]/child::div//div[@class="cia-cs"]//h3')
@@ -44,6 +45,7 @@ class SortedMarketPage extends BasePage {
       );
     }
   }
+
   async listSorting() {
     let clickableElement = By.xpath("//div[@class='_1fyfZ']");
     await driver.wait(until.elementLocated(clickableElement), 10000);
@@ -72,7 +74,15 @@ class SortedMarketPage extends BasePage {
             console.error(`Missing product or price information for index ${i}`);
         }
     }
-}
+  }
+
+  async getProductPrices() {
+    let productPricesSorted = await driver.findElements(By.xpath('//div[@data-auto-themename="listDetailed"]/child::div//span[@class="_1ArMm"]'));
+    return Promise.all(productPricesSorted.map(async element => {
+      const priceText = await element.getText();
+      return parseFloat(priceText.replace(/\s+руб./, '').replace(',', ''));
+    }));
+  }
 }
 
 export default SortedMarketPage;
