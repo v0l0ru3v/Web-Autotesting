@@ -1,11 +1,26 @@
 {
   "dependencies": {
-    "chai-as-promised": "^7.1.2",
-    "selenium-webdriver": "^4.19.0"
+    "allure-commandline": "^2.29.0",
+    "assert": "^2.1.0",
+    "axios": "^1.7.2",
+    "fs": "^0.0.1-security",
+    "selenium-webdriver": "^4.21.0"
+  },
+  "scripts": {
+    "test": "mocha --recursive --timeout 60000"
   },
   "devDependencies": {
-    "@babel/register": "^7.23.7",
-    "chai": "^4.4.1",
+    "chai": "^5.1.0",
     "mocha": "^10.4.0"
-  }
+  },
+  "name": "testing",
+  "version": "1.0.0",
+  "main": "l1_1.js",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
